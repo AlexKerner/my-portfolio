@@ -131,7 +131,7 @@ export default function Home() {
                 {t("Hello")}
               </h1>
               <p className="max-w-[600px] text-zinc-700 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
-                {t("Desc")}
+                {t("Desc")} <span>{t("Desc2")}</span>
               </p>
             </div>
             <div className="hidden md:flex md:mr-20">
