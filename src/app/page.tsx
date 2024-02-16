@@ -1,113 +1,275 @@
-import Image from "next/image";
+"use client";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRef, useState } from "react";
+import { motion, useScroll, useSpring, useInView } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { ModeToggle } from "@/components/mode-toggle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import { Parallax } from "react-parallax";
+import { useCopyToClipboard } from "usehooks-ts";
+import { Button } from "@/components/ui/button";
+
+const cardData = [
+  {
+    title: "Movie-App",
+    description:
+      "Website para sinopses de filmes | React, Typescript, Tailwind e Shadcn",
+    url: "https://movie-app-bay-theta.vercel.app/",
+  },
+  {
+    title: "Valorant Web",
+    description:
+      "Website para informações dos personagens referente ao jogo Valorant | React, Typescript, Tailwind e Material UI",
+    url: "https://valorant-web-black.vercel.app/home-page",
+  },
+];
+const cardSkill = [
+  {
+    Name: "Html",
+    icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg",
+    experience: "1 year",
+  },
+  {
+    Name: "CSS",
+    icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
+    experience: "1 year",
+  },
+  {
+    Name: "JavaScript",
+    icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg",
+    experience: "1 year",
+  },
+  {
+    Name: "Typescript",
+    icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg",
+    experience: "3 months",
+  },
+  {
+    Name: "React",
+    icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+    experience: "3 months",
+  },
+  {
+    Name: "Next",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+    experience: "1 month",
+  },
+];
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const [copiedText, copy] = useCopyToClipboard();
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = (text: string) => () => {
+    copy(text)
+      .then(() => {
+        console.log("Copied!", { text });
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false); // Resetando o estado para falso após 3 segundos
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("Failed to copy!", error);
+      });
+  };
+  const targetRef = useRef(null);
+  const isInView = useInView(targetRef);
+  const targetRef2 = useRef(null);
+  const isInView2 = useInView(targetRef2);
+  const targetRef3 = useRef(null);
+  const isInView3 = useInView(targetRef3);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="dark:bg-[#010101] bg-zinc-200">
+      <motion.div
+        className="fixed z-10 top-0 left-0 right-0 h-1 bg-zinc-500 dark:bg-zinc-50 origin-left"
+        style={{ scaleX }}
+      />
+
+      <header className="flex justify-between items-center p-4 sm:p-5 md:p-6 lg:p-8 ">
+        <h1 className="text-xl font-semibold tracking-wider">My Portfolio</h1>
+        <div className="flex items-center gap-3 md:gap-4 lg:gap-5 xl:gap-6">
+          <Avatar className="w-14 h-14">
+            <AvatarImage src="/img/avatar.png" />
+            <AvatarFallback>AK</AvatarFallback>
+          </Avatar>
+          <ModeToggle />
         </div>
-      </div>
+      </header>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+      <main>
+        <section
+          className="w-full py-64 h-full lg:py-60 relative mb-10 "
+          style={{
+            transform: isInView ? "none" : "translateX(-200px)",
+            opacity: isInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+          }}
+          ref={targetRef}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className="container grid items-center gap-6 px-4 md:px-6 lg:gap-10 text-left relative md:flex">
+            <div className="space-y-3 z-50 ">
+              <h1 className="text-3xl  font-bold tracking-tighter md:text-4xl text-black dark:text-white">
+                Hi, I'm Alexander
+              </h1>
+              <p className="max-w-[600px] text-zinc-700 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
+                I'm an aspiring software developer passionate about technology,
+                always looking to learn and grow in the field.
+              </p>
+            </div>
+            <img
+              src="/img/real-bg-light.jpg"
+              className="-z-50 hidden md:block md:dark:hidden relative"
+              alt=""
+            />
+          </div>
+        </section>
+        <Parallax bgImage="/img/fundo.avif" strength={800}>
+          <section
+            className="w-full h-full mt-60 py-28 md:py-28 lg:py-64 "
+            style={{
+              transform: isInView2 ? "none" : "translateX(200px)",
+              opacity: isInView2 ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+            ref={targetRef2}
+          >
+            <div className="container grid items-center gap-6 px-2 md:px-6 lg:grid-cols-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl  font-bold tracking-tighter md:text-4xl text-white">
+                  Projects
+                </h2>
+                <p className="text-gray-200 dark:text-gray-400">
+                  Here are some of the projects I've been working on.
+                </p>
+              </div>
+              <div className="grid gap-6 sm:gap-4 sm:grid-cols-2 xl:gap-12">
+                {cardData.map((card, index) => (
+                  <motion.div
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Card
+                      key={index}
+                      className="xl:w-72 min-h-52 max-h-52 flex flex-col justify-between items-start scale-90 md:scale-100 bg-zinc-200 dark:bg-black"
+                    >
+                      <CardContent className="mt-4 md:mt-2 lg:mt-4 xl:mt-4 pb-0">
+                        <p className="font-semibold text-lg my-4 ">
+                          {card.title}
+                        </p>
+                        <p className="text-sm text-gray-800 dark:text-gray-400 mb-0 pb-0 line-clamp-3">
+                          {card.description}
+                        </p>
+                      </CardContent>
+                      <div className="mb-0 mt-0 pb-6 py-4 ml-6 flex bottom-0 h-full w-full">
+                        <a
+                          target="_blank"
+                          className="px-3 py-2 rounded-md border text-sm dark:hover:bg-zinc-50 hover:text-white shadow-md transition-all duration-150 flex items-center gap-2 dark:hover:text-zinc-900 font-semibold hover:bg-zinc-950"
+                          href={card.url}
+                        >
+                          View Project
+                          <FontAwesomeIcon icon={faAngleRight} />
+                        </a>
+                      </div>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Parallax>
+        <Parallax bgImage="/img/fundo3.jpg" strength={800}>
+          <section
+            className="w-full h-full mt-60 py-28 md:py-28 lg:py-64 "
+            style={{
+              transform: isInView3 ? "none" : "translateX(-200px)",
+              opacity: isInView3 ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+            ref={targetRef3}
+          >
+            <div className="container mx-auto">
+              <h2 className="text-3xl font-semibold mb-8 text-white">Skills</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-2 lg:gap-6 md:mx-12 lg:mx-16 xl:mx-24 md:mt-5">
+                {cardSkill.map((skill, index) => {
+                  return (
+                    <div className="flex flex-col justify-center items-center relative">
+                      <Card
+                        key={index}
+                        className="p-4 hover:-translate-y-7 duration-200 z-10 relative min-h-32 sm:w-36 md:w-40 lg:w-36 xl:w-40 bg-zinc-200 dark:bg-black"
+                      >
+                        <h1 className="mb-4 font-[540] tracking-wide">
+                          {skill.Name}
+                        </h1>
+                        <div className="flex justify-center p-3">
+                          <img src={skill.icon} alt="" className="min-w-16" />
+                        </div>
+                      </Card>
+                      <p className="px-2 absolute bottom-0 mt-[-2.5rem] border-b rounded-sm font-semibold text-white shadow-lg">
+                        {skill.experience}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        </Parallax>
+      </main>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      <footer className="flex flex-col gap-10 h-full sm:flex-row py-10 w-full shrink-0 items-center px-4 md:px-6 border-t border-zinc-400">
+        <p className="text-md font-semibold text-zinc-800 dark:text-gray-300">
+          Contacts
+        </p>
+        <nav className="sm:ml-auto flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-4">
+            <Link
+              target="_blank"
+              className="text-xs relative overflow-hidden group"
+              href="https://www.linkedin.com/in/alexander-kerner-3177792b1/"
+            >
+              <span className="relative z-10">Linkedin</span>
+              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-zinc-800 dark:bg-zinc-200 origin-left transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+            </Link>
+            <Separator orientation="vertical" className="h-7 bg-zinc-500" />
+            <Link
+              target="_blank"
+              className="text-xs relative overflow-hidden group"
+              href="https://github.com/AlexKerner"
+            >
+              <span className="relative z-10">GitHub</span>
+              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-zinc-800 dark:bg-zinc-200 origin-left transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
+            </Link>
+            <Separator orientation="vertical" className="h-7 bg-zinc-500" />
+          </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <span className="text-xs">Get In Touch: </span>
+            <Button
+              variant="outline"
+              className="bg-transparent rounded-md border border-zinc-500 text-sm dark:hover:bg-zinc-50 hover:text-white duration-200 flex items-center gap-2 dark:hover:text-zinc-900 hover:border-zinc-950 hover:bg-stone-950"
+              onClick={handleCopy("alexanderkerner06@gmail.com")}
+            >
+              <FontAwesomeIcon icon={faEnvelope} />
+              {copiedText && isCopied
+                ? "Is Copyed!"
+                : "alexanderkerner06@gmail.com"}
+            </Button>
+          </div>
+        </nav>
+      </footer>
+    </div>
   );
 }
