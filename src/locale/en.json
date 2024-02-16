@@ -1,0 +1,21 @@
+{
+  "translation": {
+    "My Portfolio": "My Portifolio",
+    "Hello": "Hi, I'm Alexander",
+    "Desc": "I'm an aspiring software developer passionate about technology, always looking to learn and grow in the field.",
+    "Proj": "Projects",
+    "DescProj": "Here are some of the projects I've been working on.",
+    "View Project": "View Project",
+    "Contact": "Contacts",
+    "GetInTouch": "Get in touch:",
+    "Skill": "Skills",
+    "movieAppDescription": "Website for movie synopses | React, Typescript, Tailwind, and Shadcn",
+    "valorantWebDescription": "Website for information about Valorant game characters | React, Typescript, Tailwind, and Material UI",
+    "html": "1 year",
+    "css": "1 year",
+    "js": "1 year",
+    "ts": "3 months",
+    "react": "3 months",
+    "next": "1 month"
+  }
+}

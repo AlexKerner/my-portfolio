@@ -12,18 +12,18 @@ import { Separator } from "@/components/ui/separator";
 import { Parallax } from "react-parallax";
 import { useCopyToClipboard } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { LanguageToggle } from "@/components/language-toggle";
 
 const cardData = [
   {
     title: "Movie-App",
-    description:
-      "Website para sinopses de filmes | React, Typescript, Tailwind e Shadcn",
+    descriptionKey: "movieAppDescription",
     url: "https://movie-app-bay-theta.vercel.app/",
   },
   {
     title: "Valorant Web",
-    description:
-      "Website para informações dos personagens referente ao jogo Valorant | React, Typescript, Tailwind e Material UI",
+    descriptionKey: "valorantWebDescription",
     url: "https://valorant-web-black.vercel.app/home-page",
   },
 ];
@@ -31,36 +31,37 @@ const cardSkill = [
   {
     Name: "Html",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg",
-    experience: "1 year",
+    experienceKey: "html",
   },
   {
     Name: "CSS",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
-    experience: "1 year",
+    experienceKey: "css",
   },
   {
     Name: "JavaScript",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg",
-    experience: "1 year",
+    experienceKey: "js",
   },
   {
     Name: "Typescript",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg",
-    experience: "3 months",
+    experienceKey: "ts",
   },
   {
     Name: "React",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
-    experience: "3 months",
+    experienceKey: "react",
   },
   {
-    Name: "Next",
+    Name: "NextJs",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-    experience: "1 month",
+    experienceKey: "next",
   },
 ];
 
 export default function Home() {
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -98,13 +99,18 @@ export default function Home() {
       />
 
       <header className="flex justify-between items-center p-4 sm:p-5 md:p-6 lg:p-8 ">
-        <h1 className="text-xl font-semibold tracking-wider">My Portfolio</h1>
+        <h1 className="text-xl font-semibold tracking-wider">
+          {t("My Portfolio")}
+        </h1>
         <div className="flex items-center gap-3 md:gap-4 lg:gap-5 xl:gap-6">
-          <Avatar className="w-14 h-14">
+          <div className="flex items-center gap-2">
+            <ModeToggle />
+            <LanguageToggle />
+          </div>
+          <Avatar className="w-12 h-12">
             <AvatarImage src="/img/avatar.png" />
             <AvatarFallback>AK</AvatarFallback>
           </Avatar>
-          <ModeToggle />
         </div>
       </header>
 
@@ -121,11 +127,10 @@ export default function Home() {
           <div className="container grid items-center gap-6 px-4 md:px-6 lg:gap-10 text-left relative md:flex">
             <div className="space-y-3 z-50 ">
               <h1 className="text-3xl  font-bold tracking-tighter md:text-4xl text-black dark:text-white">
-                Hi, I'm Alexander
+                {t("Hello")}
               </h1>
               <p className="max-w-[600px] text-zinc-700 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
-                I'm an aspiring software developer passionate about technology,
-                always looking to learn and grow in the field.
+                {t("Desc")}
               </p>
             </div>
             <img
@@ -148,10 +153,10 @@ export default function Home() {
             <div className="container grid items-center gap-6 px-2 md:px-6 lg:grid-cols-2">
               <div className="space-y-4">
                 <h2 className="text-3xl  font-bold tracking-tighter md:text-4xl text-white">
-                  Projects
+                  {t("Proj")}
                 </h2>
                 <p className="text-gray-200 dark:text-gray-400">
-                  Here are some of the projects I've been working on.
+                  {t("DescProj")}
                 </p>
               </div>
               <div className="grid gap-6 sm:gap-4 sm:grid-cols-2 xl:gap-12">
@@ -167,10 +172,10 @@ export default function Home() {
                     >
                       <CardContent className="mt-4 md:mt-2 lg:mt-4 xl:mt-4 pb-0">
                         <p className="font-semibold text-lg my-4 ">
-                          {card.title}
+                          {t(card.title)}
                         </p>
                         <p className="text-sm text-gray-800 dark:text-gray-400 mb-0 pb-0 line-clamp-3">
-                          {card.description}
+                          {t(card.descriptionKey)}
                         </p>
                       </CardContent>
                       <div className="mb-0 mt-0 pb-6 py-4 ml-6 flex bottom-0 h-full w-full">
@@ -179,7 +184,7 @@ export default function Home() {
                           className="px-3 py-2 rounded-md border text-sm dark:hover:bg-zinc-50 hover:text-white shadow-md transition-all duration-150 flex items-center gap-2 dark:hover:text-zinc-900 font-semibold hover:bg-zinc-950"
                           href={card.url}
                         >
-                          View Project
+                          {t("View Project")}
                           <FontAwesomeIcon icon={faAngleRight} />
                         </a>
                       </div>
@@ -201,7 +206,9 @@ export default function Home() {
             ref={targetRef3}
           >
             <div className="container mx-auto">
-              <h2 className="text-3xl font-semibold mb-8 text-white">Skills</h2>
+              <h2 className="text-3xl font-semibold mb-8 text-white">
+                {t("Skill")}
+              </h2>
               <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-2 lg:gap-6 md:mx-12 lg:mx-16 xl:mx-24 md:mt-5">
                 {cardSkill.map((skill, index) => {
                   return (
@@ -218,7 +225,7 @@ export default function Home() {
                         </div>
                       </Card>
                       <p className="px-2 absolute bottom-0 mt-[-2.5rem] border-b rounded-sm font-semibold text-white shadow-lg">
-                        {skill.experience}
+                        {t(skill.experienceKey)}
                       </p>
                     </div>
                   );
@@ -231,7 +238,7 @@ export default function Home() {
 
       <footer className="flex flex-col gap-10 h-full sm:flex-row py-10 w-full shrink-0 items-center px-4 md:px-6 border-t border-zinc-400">
         <p className="text-md font-semibold text-zinc-800 dark:text-gray-300">
-          Contacts
+          {t("Contact")}
         </p>
         <nav className="sm:ml-auto flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-4">
@@ -252,11 +259,14 @@ export default function Home() {
               <span className="relative z-10">GitHub</span>
               <span className="absolute left-0 bottom-0 w-full h-0.5 bg-zinc-800 dark:bg-zinc-200 origin-left transform scale-x-0 transition-transform group-hover:scale-x-100"></span>
             </Link>
-            <Separator orientation="vertical" className="h-7 bg-zinc-500" />
+            <Separator
+              orientation="vertical"
+              className="h-7 bg-zinc-500 hidden sm:block"
+            />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <span className="text-xs">Get In Touch: </span>
+            <span className="text-xs"> {t("GetInTouch")} </span>
             <Button
               variant="outline"
               className="bg-transparent rounded-md border border-zinc-500 text-sm dark:hover:bg-zinc-50 hover:text-white duration-200 flex items-center gap-2 dark:hover:text-zinc-900 hover:border-zinc-950 hover:bg-stone-950"
