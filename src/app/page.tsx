@@ -139,7 +139,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <Parallax bgImage="/img/fundo.avif" strength={800}>
+        <Parallax bgImage="/img/fundo.avif" strength={400}>
           <section
             className="w-full h-full mt-60 py-28 md:py-28 lg:py-64 "
             style={{
@@ -194,7 +194,7 @@ export default function Home() {
             </div>
           </section>
         </Parallax>
-        <Parallax bgImage="/img/fundo3.jpg" strength={800}>
+        <Parallax bgImage="/img/fundo3.jpg" strength={400}>
           <section
             className="w-full h-full mt-60 py-28 md:py-28 lg:py-64 "
             style={{
