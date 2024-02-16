@@ -14,6 +14,7 @@ import { useCopyToClipboard } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageToggle } from "@/components/language-toggle";
+import Box3d from "@/components/box3d/box3d";
 
 const cardData = [
   {
@@ -124,7 +125,7 @@ export default function Home() {
           }}
           ref={targetRef}
         >
-          <div className="container grid items-center gap-6 px-4 md:px-6 lg:gap-10 text-left relative md:flex">
+          <div className="container flex flex-col md:justify-between items-center gap-6 px-4 md:px-6 lg:gap-10 text-left relative md:flex md:flex-row">
             <div className="space-y-3 z-50 ">
               <h1 className="text-3xl  font-bold tracking-tighter md:text-4xl text-black dark:text-white">
                 {t("Hello")}
@@ -133,11 +134,9 @@ export default function Home() {
                 {t("Desc")}
               </p>
             </div>
-            <img
-              src="/img/real-bg-light.jpg"
-              className="-z-50 hidden md:block md:dark:hidden relative"
-              alt=""
-            />
+            <div className="hidden md:flex md:mr-20">
+              <Box3d />
+            </div>
           </div>
         </section>
         <Parallax bgImage="/img/fundo.avif" strength={800}>
