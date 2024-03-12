@@ -273,7 +273,7 @@ export default function Home() {
             >
               <FontAwesomeIcon icon={faEnvelope} />
               {copiedText && isCopied
-                ? "Is Copyed!"
+                ? t("Copy")
                 : "alexanderkerner06@gmail.com"}
             </Button>
           </div>
