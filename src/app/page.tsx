@@ -23,9 +23,9 @@ const cardData = [
     url: "https://movie-app-bay-theta.vercel.app/",
   },
   {
-    title: "Valorant Web",
-    descriptionKey: "valorantWebDescription",
-    url: "https://valorant-web-black.vercel.app/home-page",
+    title: "Task-Manager",
+    descriptionKey: "taskManagerDescription",
+    url: "https://task-manager-pi-tan.vercel.app/",
   },
 ];
 const cardSkill = [

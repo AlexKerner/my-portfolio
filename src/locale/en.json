@@ -11,13 +11,13 @@
     "GetInTouch": "Get in touch:",
     "Skill": "Skills",
     "movieAppDescription": "Website for movie synopses | React, Typescript, Tailwind, and Shadcn",
-    "valorantWebDescription": "Website for information about Valorant game characters | React, Typescript, Tailwind, and Material UI",
+    "taskManagerDescription": "Website for task manager | NextJs, Typescript, Route Handlers and Prisma",
     "html": "1 year",
     "css": "1 year",
     "js": "1 year",
-    "ts": "5 months",
-    "react": "5 months",
-    "next": "2 months",
+    "ts": "6 months",
+    "react": "6 months",
+    "next": "3 months",
     "Copy": "Is copyed!"
   }
 }
