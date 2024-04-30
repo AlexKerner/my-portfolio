@@ -39,6 +39,7 @@ const cardSkill = [
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
     experienceKey: "css",
   },
+
   {
     Name: "JavaScript",
     icon: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg",
@@ -58,6 +59,16 @@ const cardSkill = [
     Name: "NextJs",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
     experienceKey: "next",
+  },
+  {
+    Name: "Dart",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg",
+    experienceKey: "dart",
+  },
+  {
+    Name: "Flutter",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg",
+    experienceKey: "flutter",
   },
 ];
 

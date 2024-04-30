@@ -15,9 +15,11 @@
     "html": "1 ano",
     "css": "1 ano",
     "js": "1 ano",
-    "ts": "6 meses",
-    "react": "6 meses",
-    "next": "3 meses",
+    "ts": "7 meses",
+    "react": "7 meses",
+    "next": "5 meses",
+    "dart": "1 mes",
+    "flutter": "1 mes",
     "Copy": "Copiado!"
   }
 }
