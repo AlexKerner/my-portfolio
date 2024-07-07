@@ -18,14 +18,14 @@ import Box3d from "@/components/box3d/box3d";
 
 const cardData = [
   {
-    title: "Movie-App",
-    descriptionKey: "movieAppDescription",
-    url: "https://movie-app-bay-theta.vercel.app/",
+    title: "Notepad",
+    descriptionKey: "notepadAppDescription",
+    url: "https://github.com/AlexKerner/notepad_app",
   },
   {
-    title: "Task-Manager",
-    descriptionKey: "taskManagerDescription",
-    url: "https://task-manager-pi-tan.vercel.app/",
+    title: "Ghibli App",
+    descriptionKey: "ghibliAppDescription",
+    url: "https://github.com/AlexKerner/ghibli_app_flutter/",
   },
 ];
 const cardSkill = [
